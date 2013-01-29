@@ -15,6 +15,7 @@ TESTING
 To load the module, do (as root):
 
   # insmod hello.ko
+  # dmesg
 
 You can check for an entry for the module (if it is loaded) from the output of:
 
@@ -23,6 +24,7 @@ You can check for an entry for the module (if it is loaded) from the output of:
 To remove the module, do (as root):
 
   # rmmod hello
+  # dmesg
 
 Kernel log messages can be viewed from the output of dmesg.
 
