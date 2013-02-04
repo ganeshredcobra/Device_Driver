@@ -14,7 +14,7 @@ TESTING
 
 To load the module, do (as root):
 
-  # insmod hello.ko myshort=55 myint=456 mylong=4567 mystring="foobar" array=2,3
+  # insmod hello.ko myshort=55 myint=456 mylong=4567 mystring="foobar" myarray=2,3,4
 
 You can play around with the different arguments passed while loading the module.
 
