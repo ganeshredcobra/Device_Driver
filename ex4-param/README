@@ -1,0 +1,57 @@
+------
+README
+------
+
+COMPILATION
+===========
+
+To compile, as root use make in the working directory of the code:
+
+  # make
+
+TESTING
+=======
+
+To load the module, do (as root):
+
+  # insmod hello.ko myshort=55 myint=456 mylong=4567 mystring="foobar" array=2,3
+
+You can play around with the different arguments passed while loading the module.
+
+You can check for an entry for the module (if it is loaded) from the output of:
+
+  # lsmod | grep hello
+
+To remove the module, do (as root):
+
+  # rmmod hello
+
+Kernel log messages can be viewed from the output of dmesg.
+
+To cleanup the compiled modules, use:
+
+  # make clean
+
+Explanations
+=============
+Parameters are declared with the module_param macro, which is defined in moduleparam.h. module_param takes three parameters: the name of the variable, its type, and a permissions mask to be used for an accompanying sysfs entry.
+Numerous types are supported for module parameters:
+--------------------------------------------------
+1.bool
+2.invbool-A boolean (true or false) value (the associated variable should be of type int). The invbool type inverts the value, so that true values become false and vice versa.
+3.charp-A char pointer value. Memory is allocated for user-provided strings, and the pointer is set accordingly.
+4.int
+5.long
+6.short
+7.uint
+8.ulong
+9.ushort
+
+Basic integer values of various lengths. The versions starting with u are for unsigned values.
+Array parameters, where the values are supplied as a comma-separated list, are also supported by the module loader. To declare an array parameter, use:
+
+module_param_array(name,type,num,perm);
+
+The final module_param field is a permission value; you should use the definitions found in <linux/stat.h>. This value controls who can access the representation of the module parameter in sysfs. If perm is set to 0, there is no sysfs entry at all; otherwise, it appears under /sys/module with the given set of permissions. Use S_IRUGO for a parameter that can be read by the world but cannot be changed; S_IRUGO|S_IWUSR allows root to change the parameter. Note that if a parameter is changed by sysfs, the value of that parameter as seen by your module changes, but your module is not notified in any other way. You should probably not make module parameters writable, unless you are prepared to detect the change and react accordingly.
+
+ganeshredcobra@gmail.com
