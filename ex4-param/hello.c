@@ -40,8 +40,9 @@ static short int myshort = 1;
 static int myint = 420;
 static long int mylong = 9999;
 static char *mystring = "blah";
-static int array[2]= {-1, -1};
+static int myarray[3]= {0,-1, -1};
 static int arr_argc = 0;
+static int count=5;
 
 module_param (myshort, short, 0000);
 MODULE_PARM_DESC (myshort, "A short integer");
@@ -55,6 +56,9 @@ MODULE_PARM_DESC (mylong, "A long integer");
 module_param (mystring, charp, 0000);
 MODULE_PARM_DESC (mystring, "A character string");
 
+module_param_array(myarray, int,&count, 0000);
+MODULE_PARM_DESC (myarray, "An Array of values");
+
 static int __init hello_2_init (void)
 {
 	int i;
@@ -63,6 +67,7 @@ static int __init hello_2_init (void)
 	printk (KERN_INFO "myint is an integer: %d\n", myint);
 	printk (KERN_INFO "mylong is a long integer: %ld\n", mylong);
 	printk (KERN_INFO "mystring is a string: %s\n\n", mystring);
+	printk (KERN_INFO "myarray is an array:{%d,%d,%d}", myarray[0],myarray[1],myarray[2]);	
 
 	return 0;
 }
