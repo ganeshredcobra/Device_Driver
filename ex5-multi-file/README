@@ -1,6 +1,13 @@
 ------
 README
 ------
+In mutifile the difference is in Makefile 
+Sometimes it makes sense to divide a kernel module between several source files. Lets say you have 2 source files :
+start.c and stop.c
+you can create a Makefile like this :
+
+obj-m += startstop.o
+startstop-objs := start.o stop.o
 
 COMPILATION
 ===========
