@@ -4,4 +4,4 @@ The directory contains simple Linux device driver code examples, for character d
 
 The device drivers are for 2.6 kernels..
 
-ganeshredcobra@gmail.com
+ganeshredcobra@gmail.com.
